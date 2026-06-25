@@ -21,6 +21,8 @@ const SideNavFilter = ({
   handleAllNotesButtonClick,
   isStarredActive,
   handleStarredButtonClick,
+  isJournalActive,
+  handleJournalButtonClick,
   isTrashedActive,
   handleTrashedButtonClick,
   counterDelNote,
@@ -44,6 +46,22 @@ const SideNavFilter = ({
       </div>
       <span styleName='menu-button-label'>{i18n.__('All Notes')}</span>
       <span styleName='counters'>{counterTotalNote}</span>
+    </button>
+
+    <button
+      styleName={isJournalActive ? 'menu-button-journal--active' : 'menu-button'}
+      onClick={handleJournalButtonClick}
+    >
+      <div styleName='iconWrap'>
+        <img
+          src={
+            isJournalActive
+              ? '../resources/icon/icon-edit.svg'
+              : '../resources/icon/icon-edit.svg'
+          }
+        />
+      </div>
+      <span styleName='menu-button-label'>{i18n.__('Journal')}</span>
     </button>
 
     <button
@@ -88,6 +106,8 @@ SideNavFilter.propTypes = {
   isHomeActive: PropTypes.bool.isRequired,
   handleAllNotesButtonClick: PropTypes.func.isRequired,
   isStarredActive: PropTypes.bool.isRequired,
+  isJournalActive: PropTypes.bool,
+  handleJournalButtonClick: PropTypes.func,
   isTrashedActive: PropTypes.bool.isRequired,
   handleStarredButtonClick: PropTypes.func.isRequired,
   handleTrashedButtonClick: PropTypes.func.isRequired

@@ -7,6 +7,7 @@ import SideNav from './SideNav'
 import TopBar from './TopBar'
 import NoteList from './NoteList'
 import Detail from './Detail'
+import Journal from './Journal'
 import dataApi from 'browser/main/lib/dataApi'
 import _ from 'lodash'
 import ConfigManager from 'browser/main/lib/ConfigManager'
@@ -375,39 +376,52 @@ class Main extends React.Component {
               'location'
             ])}
           />
-          <NoteList
-            style={{ width: this.state.listWidth }}
-            {..._.pick(this.props, [
-              'dispatch',
-              'data',
-              'config',
-              'match',
-              'location'
-            ])}
-          />
-          <div
-            styleName={
-              this.state.isRightSliderFocused
-                ? 'slider-right--active'
-                : 'slider-right'
-            }
-            style={{ left: this.state.listWidth - 1 }}
-            onMouseDown={e => this.handleRightSlideMouseDown(e)}
-            draggable='false'
-          >
-            <div styleName='slider-hitbox' />
-          </div>
-          <Detail
-            style={{ left: this.state.listWidth }}
-            {..._.pick(this.props, [
-              'dispatch',
-              'data',
-              'config',
-              'match',
-              'location'
-            ])}
-            ignorePreviewPointerEvents={this.state.isRightSliderFocused}
-          />
+          {location.pathname === '/journal' ? (
+            <Journal
+              {..._.pick(this.props, ['dispatch', 'data'])}
+              style={{
+                left: config.isSideNavFolded
+                  ? foldedNavigationWidth
+                  : this.state.navWidth
+              }}
+            />
+          ) : (
+            <React.Fragment>
+              <NoteList
+                style={{ width: this.state.listWidth }}
+                {..._.pick(this.props, [
+                  'dispatch',
+                  'data',
+                  'config',
+                  'match',
+                  'location'
+                ])}
+              />
+              <div
+                styleName={
+                  this.state.isRightSliderFocused
+                    ? 'slider-right--active'
+                    : 'slider-right'
+                }
+                style={{ left: this.state.listWidth - 1 }}
+                onMouseDown={e => this.handleRightSlideMouseDown(e)}
+                draggable='false'
+              >
+                <div styleName='slider-hitbox' />
+              </div>
+              <Detail
+                style={{ left: this.state.listWidth }}
+                {..._.pick(this.props, [
+                  'dispatch',
+                  'data',
+                  'config',
+                  'match',
+                  'location'
+                ])}
+                ignorePreviewPointerEvents={this.state.isRightSliderFocused}
+              />
+            </React.Fragment>
+          )}
         </div>
       </div>
     )

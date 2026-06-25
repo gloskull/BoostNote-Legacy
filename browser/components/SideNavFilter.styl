@@ -30,6 +30,14 @@
   background-color alpha($ui-button-default--active-backgroundColor, 20%)
   .menu-button-label, .counters
     color #1EC38B
+
+.menu-button-journal--active
+  @extend .menu-button
+  SideNavFilter()
+  color #1EC38B
+  background-color alpha($ui-button-default--active-backgroundColor, 20%)
+  .menu-button-label, .counters
+    color #1EC38B
   &:hover
     color #1EC38B
 
@@ -55,7 +63,7 @@
 
 .menu--folded
   @extend .menu
-  .menu-button, .menu-button--active, .menu-button-star--active, .menu-button-trash--active
+  .menu-button, .menu-button--active, .menu-button-star--active, .menu-button-trash--active, .menu-button-journal--active
     text-align center
     padding 0 12px
     &:hover .menu-button-label
@@ -132,6 +140,22 @@ body[data-theme="white"]
       color #5D9E36
       .menu-button-label
         color $ui-text-color
+
+  .menu-button-journal--active
+    color #1278BD
+    background-color $ui-button--active-backgroundColor
+    .menu-button-label
+      color $ui-text-color
+    &:hover
+      background-color alpha($ui-button--active-backgroundColor, 50%)
+      color #1278BD
+      .menu-button-label
+        color $ui-text-color
+    &:active, &:active:hover
+      background-color alpha($ui-button--active-backgroundColor, 50%)
+      color #1278BD
+      .menu-button-label
+        color $ui-text-color
     &:active, &:active:hover
       background-color alpha($ui-button--active-backgroundColor, 50%)
       color #5D9E36
@@ -180,6 +204,17 @@ body[data-theme="dark"]
       .menu-button-label
         color $ui-dark-text-color
 
+  .menu-button-journal--active
+    color #3498db
+    background-color $ui-dark-button--active-backgroundColor
+    .menu-button-label
+      color $ui-dark-text-color
+    &:hover
+      background-color alpha($ui-dark-button--active-backgroundColor, 50%)
+      color #3498db
+      .menu-button-label
+        color $ui-dark-text-color
+
 apply-theme(theme)
   body[data-theme={theme}]
     .menu-button
@@ -191,6 +226,17 @@ apply-theme(theme)
         color get-theme-var(theme, 'text-color')
 
     .menu-button--active
+      color get-theme-var(theme, 'text-color')
+      background-color get-theme-var(theme, 'button-backgroundColor')
+      .menu-button-label
+        color get-theme-var(theme, 'text-color')
+      &:hover
+        background-color get-theme-var(theme, 'button-backgroundColor')
+        color get-theme-var(theme, 'text-color')
+        .menu-button-label
+          color get-theme-var(theme, 'text-color')
+
+    .menu-button-journal--active
       color get-theme-var(theme, 'text-color')
       background-color get-theme-var(theme, 'button-backgroundColor')
       .menu-button-label

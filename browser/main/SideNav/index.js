@@ -153,6 +153,11 @@ class SideNav extends React.Component {
     dispatch(push('/starred'))
   }
 
+  handleJournalButtonClick(e) {
+    const { dispatch } = this.props
+    dispatch(push('/journal'))
+  }
+
   handleTagContextMenu(e, tag) {
     context.popup([
       {
@@ -349,6 +354,7 @@ class SideNav extends React.Component {
 
     const isHomeActive = !!location.pathname.match(/^\/home$/)
     const isStarredActive = !!location.pathname.match(/^\/starred$/)
+    const isJournalActive = !!location.pathname.match(/^\/journal$/)
     const isTrashedActive = !!location.pathname.match(/^\/trashed$/)
 
     let component
@@ -393,8 +399,10 @@ class SideNav extends React.Component {
             isHomeActive={isHomeActive}
             handleAllNotesButtonClick={e => this.handleHomeButtonClick(e)}
             isStarredActive={isStarredActive}
+            isJournalActive={isJournalActive}
             isTrashedActive={isTrashedActive}
             handleStarredButtonClick={e => this.handleStarredButtonClick(e)}
+            handleJournalButtonClick={e => this.handleJournalButtonClick(e)}
             handleTrashedButtonClick={e => this.handleTrashedButtonClick(e)}
             counterTotalNote={
               data.noteMap._map.size - data.trashedSet._set.size
