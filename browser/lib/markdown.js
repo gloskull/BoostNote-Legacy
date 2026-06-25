@@ -201,19 +201,23 @@ class Markdown {
       inlineClose: config.preview.latexInlineClose,
       blockOpen: config.preview.latexBlockOpen,
       blockClose: config.preview.latexBlockClose,
-      inlineRenderer: function(str) {
+      inlineRenderer: str => {
         let output = ''
+        const macros = ConfigManager.get().preview.latexMacros || ''
         try {
-          output = katex.renderToString(str.trim())
+          output = katex.renderToString(macros + str.trim())
         } catch (err) {
           output = `<span class="katex-error">${err.message}</span>`
         }
         return output
       },
-      blockRenderer: function(str) {
+      blockRenderer: str => {
         let output = ''
+        const macros = ConfigManager.get().preview.latexMacros || ''
         try {
-          output = katex.renderToString(str.trim(), { displayMode: true })
+          output = katex.renderToString(macros + str.trim(), {
+            displayMode: true
+          })
         } catch (err) {
           output = `<div class="katex-error">${err.message}</div>`
         }

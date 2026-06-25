@@ -40,10 +40,12 @@ class UiTab extends React.Component {
       'javascript'
     )
     CodeMirror.autoLoadMode(this.prettierConfigCM.getCodeMirror(), 'javascript')
+    CodeMirror.autoLoadMode(this.latexMacrosCM.getCodeMirror(), 'stex')
     // Set CM editor Sizes
     this.customCSSCM.getCodeMirror().setSize('400px', '400px')
     this.prettierConfigCM.getCodeMirror().setSize('400px', '400px')
     this.customMarkdownLintConfigCM.getCodeMirror().setSize('400px', '200px')
+    this.latexMacrosCM.getCodeMirror().setSize('400px', '200px')
 
     this.handleSettingDone = () => {
       this.setState({
@@ -162,7 +164,8 @@ class UiTab extends React.Component {
         mermaidHTMLLabel: this.refs.previewMermaidHTMLLabel.checked,
         allowCustomCSS: this.refs.previewAllowCustomCSS.checked,
         lineThroughCheckbox: this.refs.lineThroughCheckbox.checked,
-        customCSS: this.customCSSCM.getCodeMirror().getValue()
+        customCSS: this.customCSSCM.getCodeMirror().getValue(),
+        latexMacros: this.latexMacrosCM.getCodeMirror().getValue()
       }
     }
 
@@ -1295,6 +1298,27 @@ class UiTab extends React.Component {
                 onChange={e => this.handleUIChange(e)}
                 type='text'
               />
+            </div>
+          </div>
+          <div styleName='group-section'>
+            <div styleName='group-section-label'>
+              {i18n.__('LaTeX Macros')}
+            </div>
+            <div styleName='group-section-control'>
+              <div style={{ fontFamily }}>
+                <ReactCodeMirror
+                  width='400px'
+                  height='200px'
+                  onChange={e => this.handleUIChange(e)}
+                  ref={e => (this.latexMacrosCM = e)}
+                  value={config.preview.latexMacros}
+                  options={{
+                    lineNumbers: true,
+                    mode: 'stex',
+                    theme: codemirrorTheme
+                  }}
+                />
+              </div>
             </div>
           </div>
           <div styleName='group-section'>
