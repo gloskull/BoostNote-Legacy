@@ -132,6 +132,7 @@ export const DEFAULT_CONFIG = {
     smartArrows: false,
     allowCustomCSS: false,
     customCSS: DEFAULT_CSS_CONFIG,
+    latexMacros: '',
     sanitize: 'STRICT', // 'STRICT', 'ALLOW_STYLES', 'NONE'
     mermaidHTMLLabel: false,
     lineThroughCheckbox: true
